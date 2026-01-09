@@ -1,6 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import { howItWorks } from "@/content/site";
+
+export const metadata: Metadata = {
+  title: howItWorks.hero.title,
+  description: howItWorks.hero.subtitle
+};
 
 export default function HowItWorksPage() {
   return (
@@ -32,9 +38,7 @@ export default function HowItWorksPage() {
           </div>
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="space-y-4">
-              <h2 className="text-lg font-semibold text-ink">
-                What you get in 30 days
-              </h2>
+              <h2 className="text-lg font-semibold text-ink">What you get in 30 days</h2>
               <ul className="space-y-3 text-sm text-muted">
                 {howItWorks.outputs.map((item) => (
                   <li key={item} className="flex items-start gap-3">
@@ -143,9 +147,7 @@ export default function HowItWorksPage() {
       <section className="bg-surface">
         <div className="container flex flex-col items-start justify-between gap-6 rounded-3xl border border-slate-200 bg-white p-10 shadow-sm md:flex-row md:items-center">
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold text-ink">
-              {howItWorks.cta.title}
-            </h2>
+            <h2 className="text-2xl font-semibold text-ink">{howItWorks.cta.title}</h2>
             <p className="text-muted">{howItWorks.cta.description}</p>
           </div>
           <Link
@@ -157,13 +159,5 @@ export default function HowItWorksPage() {
         </div>
       </section>
     </div>
-import { Container } from "@/components/site/Container";
-
-export default function Page() {
-  return (
-    <Container className="space-y-3">
-      <h1 className="text-3xl font-semibold text-text">Coming next</h1>
-      <p className="text-text-muted">This page will be filled in during PR2.</p>
-    </Container>
   );
 }

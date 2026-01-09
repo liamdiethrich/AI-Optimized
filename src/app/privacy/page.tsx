@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
+
 import { Container } from "@/components/site/Container";
+import { siteContent } from "@/content/site";
+
+const privacyLabel = siteContent.footer.legalLinks[0]?.label ?? "Privacy Policy";
+
+export const metadata: Metadata = {
+  title: privacyLabel,
+  description: siteContent.site.tagline
+};
 
 export default function Page() {
   return (

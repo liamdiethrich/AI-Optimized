@@ -1,32 +1,13 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./src/**/*.{ts,tsx}"],
-  theme: {
-    extend: {
-      colors: {
-        ink: "#0f172a",
-        muted: "#475569",
-        surface: "#f8fafc"
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" }
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" }
-        }
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out"
   darkMode: ["class"],
   content: ["./src/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
+        ink: "#0f172a",
+        muted: "#475569",
         brand: {
           primary: "rgb(var(--brand-primary) / <alpha-value>)",
           accent: "rgb(var(--brand-accent) / <alpha-value>)"
@@ -41,6 +22,20 @@ const config: Config = {
           DEFAULT: "rgb(var(--text) / <alpha-value>)",
           muted: "rgb(var(--text-muted) / <alpha-value>)"
         }
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" }
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" }
+        }
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out"
       },
       fontFamily: {
         heading: ["var(--font-heading)", "ui-sans-serif", "system-ui"],

@@ -78,7 +78,7 @@ export function LeadForm() {
 
       {status === "success" && (
         <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-900">
-          Thanks! Your request is in. We'll respond within 2 business days.
+          Thanks! Your request is in. We&apos;ll respond within 2 business days.
         </div>
       )}
 

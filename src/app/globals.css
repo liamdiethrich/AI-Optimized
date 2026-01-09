@@ -3,6 +3,19 @@
 @tailwind utilities;
 
 :root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-white text-ink antialiased;
+}
+
+section {
+  @apply py-16;
+}
+
+.container {
+  @apply mx-auto w-full max-w-6xl px-6;
   color-scheme: dark;
   --brand-primary: 32 48 80;
   --brand-accent: 45 212 191;

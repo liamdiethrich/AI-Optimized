@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
+
 import { Container } from "@/components/site/Container";
 import { siteContent } from "@/content/site";
+
+export const metadata: Metadata = {
+  title: siteContent.pages.examples.title,
+  description: siteContent.pages.examples.subtitle
+};
 
 export default function Page() {
   const { examples } = siteContent.pages;

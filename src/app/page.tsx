@@ -1,39 +1,14 @@
-import Link from "next/link";
+import type { Metadata } from "next";
 
-export default function HomePage() {
-  return (
-    <div className="container flex flex-col gap-10 py-20">
-      <div className="max-w-2xl space-y-4">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted">
-          AI Optimized
-        </p>
-        <h1 className="text-4xl font-semibold leading-tight text-ink">
-          Productized AI workflow optimization for busy operators.
-        </h1>
-        <p className="text-lg text-muted">
-          Start with a free AI Opportunity Scan. We deliver one measurable automation in
-          30 days and make sure your team can run it without us.
-        </p>
-      </div>
-      <div className="flex flex-wrap gap-4">
-        <Link
-          href="/how-it-works"
-          className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white"
-        >
-          See how it works
-        </Link>
-        <Link
-          href="/pricing"
-          className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold"
-        >
-          View pricing
-        </Link>
-      </div>
-    </div>
 import { Badge } from "../components/site/Badge";
 import { ButtonLink } from "../components/site/ButtonLink";
 import { Section } from "../components/site/Section";
-import { homeCopy } from "../content/site";
+import { homeCopy, siteContent } from "../content/site";
+
+export const metadata: Metadata = {
+  title: siteContent.site.name,
+  description: siteContent.site.description
+};
 
 export default function HomePage() {
   return (
@@ -54,10 +29,7 @@ export default function HomePage() {
               <ButtonLink href={homeCopy.hero.primaryCta.href}>
                 {homeCopy.hero.primaryCta.label}
               </ButtonLink>
-              <ButtonLink
-                href={homeCopy.hero.secondaryCta.href}
-                variant="secondary"
-              >
+              <ButtonLink href={homeCopy.hero.secondaryCta.href} variant="secondary">
                 {homeCopy.hero.secondaryCta.label}
               </ButtonLink>
             </div>
@@ -65,9 +37,7 @@ export default function HomePage() {
           <div className="grid gap-6 rounded-2xl border border-slate-200/60 bg-slate-50/70 p-8 md:grid-cols-3">
             {homeCopy.bullets.items.map((item) => (
               <div key={item.title} className="space-y-3">
-                <h3 className="text-lg font-semibold text-slate-900">
-                  {item.title}
-                </h3>
+                <h3 className="text-lg font-semibold text-slate-900">{item.title}</h3>
                 <p className="text-sm text-slate-600">{item.description}</p>
               </div>
             ))}
@@ -80,17 +50,13 @@ export default function HomePage() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="space-y-3">
               <Badge>{homeCopy.bullets.title}</Badge>
-              <p className="max-w-2xl text-lg text-slate-700">
-                {homeCopy.bullets.title}
-              </p>
+              <p className="max-w-2xl text-lg text-slate-700">{homeCopy.bullets.title}</p>
             </div>
           </div>
           <div className="grid gap-6 rounded-2xl bg-white p-8 shadow-sm sm:grid-cols-3">
             {homeCopy.stats.map((stat) => (
               <div key={stat.label} className="space-y-2">
-                <p className="text-3xl font-semibold text-slate-900">
-                  {stat.value}
-                </p>
+                <p className="text-3xl font-semibold text-slate-900">{stat.value}</p>
                 <p className="text-sm text-slate-600">{stat.label}</p>
               </div>
             ))}
@@ -105,9 +71,7 @@ export default function HomePage() {
             <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">
               {homeCopy.freeScan.title}
             </h2>
-            <p className="text-base text-slate-600">
-              {homeCopy.freeScan.description}
-            </p>
+            <p className="text-base text-slate-600">{homeCopy.freeScan.description}</p>
           </div>
           <div className="flex flex-1 flex-col gap-4 rounded-2xl border border-slate-200/60 bg-white p-8 shadow-sm">
             {homeCopy.freeScan.checklist.map((item) => (
@@ -146,9 +110,7 @@ export default function HomePage() {
                 <h3 className="mt-3 text-lg font-semibold text-slate-900">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm text-slate-600">
-                  {step.description}
-                </p>
+                <p className="mt-2 text-sm text-slate-600">{step.description}</p>
               </div>
             ))}
           </div>
@@ -169,12 +131,8 @@ export default function HomePage() {
                 key={tile.title}
                 className="rounded-2xl border border-slate-200/60 bg-slate-50/60 p-6"
               >
-                <h3 className="text-lg font-semibold text-slate-900">
-                  {tile.title}
-                </h3>
-                <p className="mt-2 text-sm text-slate-600">
-                  {tile.description}
-                </p>
+                <h3 className="text-lg font-semibold text-slate-900">{tile.title}</h3>
+                <p className="mt-2 text-sm text-slate-600">{tile.description}</p>
               </div>
             ))}
           </div>
@@ -195,12 +153,8 @@ export default function HomePage() {
                 key={point.title}
                 className="rounded-2xl border border-slate-200/60 bg-white p-6 shadow-sm"
               >
-                <h3 className="text-lg font-semibold text-slate-900">
-                  {point.title}
-                </h3>
-                <p className="mt-2 text-sm text-slate-600">
-                  {point.description}
-                </p>
+                <h3 className="text-lg font-semibold text-slate-900">{point.title}</h3>
+                <p className="mt-2 text-sm text-slate-600">{point.description}</p>
               </div>
             ))}
           </div>
@@ -221,12 +175,8 @@ export default function HomePage() {
                 key={template.title}
                 className="rounded-2xl border border-slate-200/60 bg-slate-50/60 p-6"
               >
-                <h3 className="text-lg font-semibold text-slate-900">
-                  {template.title}
-                </h3>
-                <p className="mt-2 text-sm text-slate-600">
-                  {template.outcome}
-                </p>
+                <h3 className="text-lg font-semibold text-slate-900">{template.title}</h3>
+                <p className="mt-2 text-sm text-slate-600">{template.outcome}</p>
               </div>
             ))}
           </div>
@@ -240,14 +190,10 @@ export default function HomePage() {
             <h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl">
               {homeCopy.pricing.title}
             </h2>
-            <p className="text-base text-slate-600">
-              {homeCopy.pricing.description}
-            </p>
+            <p className="text-base text-slate-600">{homeCopy.pricing.description}</p>
           </div>
           <div className="flex flex-1 flex-col gap-2 rounded-2xl border border-slate-200/60 bg-white p-8 shadow-sm">
-            <p className="text-3xl font-semibold text-slate-900">
-              {homeCopy.pricing.highlight}
-            </p>
+            <p className="text-3xl font-semibold text-slate-900">{homeCopy.pricing.highlight}</p>
             <p className="text-sm text-slate-600">{homeCopy.pricing.note}</p>
             <ButtonLink className="mt-4" href={homeCopy.hero.primaryCta.href}>
               {homeCopy.hero.primaryCta.label}
@@ -270,9 +216,7 @@ export default function HomePage() {
                 key={item.question}
                 className="rounded-2xl border border-slate-200/60 bg-slate-50/60 p-6"
               >
-                <h3 className="text-base font-semibold text-slate-900">
-                  {item.question}
-                </h3>
+                <h3 className="text-base font-semibold text-slate-900">{item.question}</h3>
                 <p className="mt-2 text-sm text-slate-600">{item.answer}</p>
               </div>
             ))}
@@ -291,25 +235,9 @@ export default function HomePage() {
               {homeCopy.finalCta.description}
             </p>
           </div>
-          <ButtonLink href={homeCopy.finalCta.cta.href}>
-            {homeCopy.finalCta.cta.label}
-          </ButtonLink>
+          <ButtonLink href={homeCopy.finalCta.cta.href}>{homeCopy.finalCta.cta.label}</ButtonLink>
         </div>
       </Section>
     </main>
-import { Container } from "@/components/site/Container";
-
-export default function HomePage() {
-  return (
-    <Container className="space-y-4">
-      <p className="text-sm uppercase tracking-[0.3em] text-text-muted">PR1</p>
-      <h1 className="text-3xl font-semibold text-text md:text-4xl">
-        AI Optimized marketing site
-      </h1>
-      <p className="max-w-2xl text-base text-text-muted">
-        Core layout, design tokens, and shared components are in place. Full content
-        ships in PR2.
-      </p>
-    </Container>
   );
 }

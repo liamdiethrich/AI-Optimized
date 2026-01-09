@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
+
 import { Container } from "@/components/site/Container";
 import { siteContent } from "@/content/site";
 import { ContactForm } from "./ContactForm";
+
+export const metadata: Metadata = {
+  title: siteContent.pages.contact.title,
+  description: siteContent.pages.contact.subtitle
+};
 
 export default function Page() {
   const { contact } = siteContent.pages;

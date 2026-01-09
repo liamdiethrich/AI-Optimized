@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
 import FAQ from "@/components/site/FAQ";
 import { pricing, pricingFaq } from "@/content/site";
+
+export const metadata: Metadata = {
+  title: pricing.hero.title,
+  description: pricing.hero.subtitle
+};
 
 export default function PricingPage() {
   return (
@@ -14,9 +20,7 @@ export default function PricingPage() {
           <h1 className="text-4xl font-semibold text-ink sm:text-5xl">
             {pricing.hero.title}
           </h1>
-          <p className="mx-auto max-w-2xl text-lg text-muted">
-            {pricing.hero.subtitle}
-          </p>
+          <p className="mx-auto max-w-2xl text-lg text-muted">{pricing.hero.subtitle}</p>
         </div>
       </section>
 
@@ -30,9 +34,7 @@ export default function PricingPage() {
               <div className="space-y-3">
                 <h2 className="text-xl font-semibold text-ink">{tier.name}</h2>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-semibold text-ink">
-                    {tier.price}
-                  </span>
+                  <span className="text-3xl font-semibold text-ink">{tier.price}</span>
                   <span className="text-sm text-muted">{tier.cadence}</span>
                 </div>
                 <p className="text-sm text-muted">{tier.description}</p>
@@ -86,9 +88,7 @@ export default function PricingPage() {
       <section>
         <div className="container grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
           <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-            <h2 className="text-2xl font-semibold text-ink">
-              {pricing.riskReversal.title}
-            </h2>
+            <h2 className="text-2xl font-semibold text-ink">{pricing.riskReversal.title}</h2>
             <p className="mt-3 text-muted">{pricing.riskReversal.description}</p>
           </div>
           <div className="space-y-4">
@@ -113,9 +113,7 @@ export default function PricingPage() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted">
               Pricing FAQ
             </p>
-            <h2 className="text-3xl font-semibold text-ink">
-              Questions before you commit
-            </h2>
+            <h2 className="text-3xl font-semibold text-ink">Questions before you commit</h2>
             <p className="text-muted">
               Quick answers on scope, timelines, and how we work with your team.
             </p>
@@ -126,13 +124,5 @@ export default function PricingPage() {
         </div>
       </section>
     </div>
-import { Container } from "@/components/site/Container";
-
-export default function Page() {
-  return (
-    <Container className="space-y-3">
-      <h1 className="text-3xl font-semibold text-text">Coming next</h1>
-      <p className="text-text-muted">This page will be filled in during PR2.</p>
-    </Container>
   );
 }

@@ -1,4 +1,14 @@
+import type { Metadata } from "next";
+
 import { Container } from "@/components/site/Container";
+import { siteContent } from "@/content/site";
+
+const termsLabel = siteContent.footer.legalLinks[1]?.label ?? "Terms of Service";
+
+export const metadata: Metadata = {
+  title: termsLabel,
+  description: siteContent.site.tagline
+};
 
 export default function Page() {
   return (

@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --brand-primary: 32 48 80;
+  --brand-accent: 45 212 191;
+  --background: 8 11 20;
+  --surface: 15 20 32;
+  --surface-muted: 22 28 42;
+  --border: 40 48 68;
+  --text: 236 240 248;
+  --text-muted: 166 176 198;
+}
+
+.light {
+  color-scheme: light;
+  --background: 248 250 252;
+  --surface: 255 255 255;
+  --surface-muted: 241 245 249;
+  --border: 226 232 240;
+  --text: 15 23 42;
+  --text-muted: 71 85 105;
+}
+
+* {
+  border-color: rgb(var(--border) / 1);
+}
+
+body {
+  @apply bg-background text-text font-body antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-heading text-text;
+}
+
+::selection {
+  background-color: rgb(var(--brand-accent) / 0.35);
+}

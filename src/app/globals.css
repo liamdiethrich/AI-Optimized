@@ -26,3 +26,233 @@ body {
 * {
   border-color: rgb(var(--border));
 }
+
+body {
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3,
+.display {
+  font-family: var(--font-display);
+}
+
+:root{
+  --aio-night: 7 10 16;           /* #070A10 */
+  --aio-night-2: 11 16 32;        /* #0B1020 */
+  --aio-paper: 246 248 252;       /* #F6F8FC */
+  --aio-paper-2: 238 242 247;     /* #EEF2F7 */
+  --aio-ink: 11 15 26;            /* #0B0F1A */
+  --aio-text: 233 238 248;        /* #E9EEF8 */
+
+  --aio-brand: 42 56 88;          /* #2A3858 (logo navy) */
+  --aio-brand-2: 58 92 204;       /* #3A5CCC */
+  --aio-star: 125 211 252;        /* #7DD3FC */
+
+  --aio-radius: 22px;
+  --aio-radius-sm: 16px;
+
+  --aio-ease: cubic-bezier(.22,1,.36,1);
+}
+
+body{
+  color: rgb(var(--aio-text));
+  background:
+    radial-gradient(900px 520px at 70% -10%, rgba(var(--aio-brand-2), .22), transparent 60%),
+    radial-gradient(700px 520px at 20% 10%, rgba(var(--aio-star), .10), transparent 55%),
+    linear-gradient(180deg, rgb(var(--aio-night)) 0%, rgb(var(--aio-night-2)) 40%, rgb(var(--aio-night)) 100%);
+}
+
+@layer components {
+  .aio-page{
+    position: relative;
+    overflow-x: clip;
+  }
+
+  .aio-container{
+    width: min(1120px, calc(100% - 48px));
+    margin-inline: auto;
+  }
+
+  .aio-section{
+    position: relative;
+    padding: 96px 0;
+  }
+
+  .aio-section--dark{
+    color: rgb(var(--aio-text));
+  }
+
+  .aio-section--light{
+    color: rgb(var(--aio-ink));
+    background:
+      radial-gradient(900px 520px at 80% 0%, rgba(var(--aio-brand-2), .10), transparent 65%),
+      linear-gradient(180deg, rgb(var(--aio-paper)) 0%, rgb(var(--aio-paper-2)) 100%);
+  }
+
+  .aio-section-fade-top,
+  .aio-section-fade-bottom{
+    position: absolute;
+    left: 0; right: 0;
+    height: 120px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .aio-section-fade-top{ top: 0; background: linear-gradient(to bottom, rgba(var(--aio-night), .55), transparent); }
+  .aio-section-fade-bottom{ bottom: 0; background: linear-gradient(to top, rgba(var(--aio-night), .55), transparent); }
+
+  .aio-orbit-overlay{
+    position: absolute;
+    inset: -1px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: .55;
+    background-image:
+      repeating-radial-gradient(circle at 70% -10%,
+        rgba(var(--aio-star), .18) 0 1px,
+        transparent 1px 34px),
+      repeating-linear-gradient(135deg,
+        rgba(255,255,255,.06) 0 1px,
+        transparent 1px 18px);
+    mask-image: radial-gradient(circle at 60% 10%, black 0 55%, transparent 75%);
+  }
+
+  .aio-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.06);
+    color: rgba(var(--aio-text), .92);
+  }
+
+  .aio-badge::before{
+    content: "";
+    width: 8px; height: 8px;
+    transform: rotate(45deg);
+    border-radius: 2px;
+    background: radial-gradient(circle at 30% 30%, rgba(var(--aio-star),1), rgba(var(--aio-brand-2),.25) 70%);
+    box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 0 18px rgba(var(--aio-star), .25);
+  }
+
+  .aio-badge--light{
+    color: rgba(var(--aio-ink), .80);
+    border: 1px solid rgba(var(--aio-brand), .14);
+    background: rgba(255,255,255,.72);
+  }
+
+  .aio-card{
+    border-radius: var(--aio-radius);
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.04);
+    box-shadow: 0 18px 55px rgba(0,0,0,.28);
+    backdrop-filter: blur(10px);
+  }
+
+  @supports not (backdrop-filter: blur(1px)){
+    .aio-card{ background: rgba(255,255,255,.06); }
+  }
+
+  .aio-card--light{
+    border: 1px solid rgba(var(--aio-brand), .14);
+    background: rgba(255,255,255,.78);
+    box-shadow: 0 14px 40px rgba(11,15,26,.10);
+  }
+
+  .aio-card-hover{
+    transition: transform 260ms var(--aio-ease), box-shadow 260ms var(--aio-ease), border-color 260ms var(--aio-ease);
+  }
+
+  .aio-card-hover:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 22px 70px rgba(0,0,0,.32);
+    border-color: rgba(255,255,255,.16);
+  }
+
+  .aio-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 999px;
+    padding: 12px 18px;
+    font-weight: 600;
+    letter-spacing: .01em;
+    transition: transform 240ms var(--aio-ease), box-shadow 240ms var(--aio-ease), background 240ms var(--aio-ease), border-color 240ms var(--aio-ease);
+    user-select: none;
+  }
+
+  .aio-btn:active{ transform: translateY(1px); }
+
+  .aio-btn--primary{
+    color: white;
+    background: linear-gradient(135deg, rgb(var(--aio-brand)) 0%, rgb(var(--aio-brand-2)) 100%);
+    box-shadow: 0 16px 44px rgba(var(--aio-brand-2), .25);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .aio-btn--primary::after{
+    content:"";
+    position:absolute;
+    width: 140px; height: 140px;
+    top: -70px; right: -70px;
+    background: radial-gradient(circle, rgba(var(--aio-star), .55), transparent 65%);
+    transform: rotate(25deg);
+    opacity: .65;
+    pointer-events: none;
+  }
+
+  .aio-btn--primary:hover{
+    box-shadow: 0 20px 60px rgba(var(--aio-brand-2), .32);
+  }
+
+  .aio-btn--secondary{
+    color: rgba(var(--aio-text), .92);
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+  }
+
+  .aio-btn--secondary:hover{
+    background: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.18);
+  }
+
+  .aio-input{
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.12);
+    background: rgba(255,255,255,.04);
+    color: rgba(var(--aio-text), .94);
+    transition: box-shadow 240ms var(--aio-ease), border-color 240ms var(--aio-ease), background 240ms var(--aio-ease);
+  }
+
+  .aio-input::placeholder{ color: rgba(var(--aio-text), .45); }
+
+  .aio-input:focus{
+    outline: none;
+    border-color: rgba(var(--aio-brand-2), .65);
+    box-shadow: 0 0 0 5px rgba(var(--aio-brand-2), .22);
+  }
+
+  .aio-input--light{
+    border: 1px solid rgba(var(--aio-brand), .18);
+    background: rgba(255,255,255,.85);
+    color: rgba(var(--aio-ink), .92);
+  }
+
+  .aio-input--light::placeholder{ color: rgba(var(--aio-ink), .42); }
+
+  .aio-input--light:focus{
+    border-color: rgba(var(--aio-brand-2), .65);
+    box-shadow: 0 0 0 5px rgba(var(--aio-brand-2), .18);
+  }
+}

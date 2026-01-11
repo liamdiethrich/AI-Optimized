@@ -1,8 +1,20 @@
 import type { Metadata } from "next";
+import { Inter, Space_Grotesk } from "next/font/google";
+
 import "./globals.css";
 import { Footer } from "@/components/site/Footer";
 import { Navbar } from "@/components/site/Navbar";
 import { siteContent } from "@/content/site";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -19,9 +31,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className="font-body bg-background text-text">
-        <div className="flex min-h-screen flex-col bg-background">
+    <html
+      lang="en"
+      className={`${inter.variable} ${spaceGrotesk.variable} antialiased dark`}
+    >
+      <body>
+        <div className="flex min-h-screen flex-col">
           <Navbar />
           <main className="flex-1 py-12">{children}</main>
           <Footer />

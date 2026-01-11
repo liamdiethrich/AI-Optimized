@@ -18,7 +18,6 @@ export function Section({
   ...props
 }: SectionProps) {
   const classes = [
-    "py-16 sm:py-20",
     variantStyles[variant],
     className,
   ]

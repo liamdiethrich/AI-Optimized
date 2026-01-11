@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import FAQ from "@/components/site/FAQ";
-import { pricing, pricingFaq } from "@/content/site";
+import { ROICalculator } from "@/components/site/ROICalculator";
+import { pricing, pricingFaq, siteContent } from "@/content/site";
 
 export const metadata: Metadata = {
   title: pricing.hero.title,
@@ -48,13 +49,30 @@ export default function PricingPage() {
                 ))}
               </ul>
               <Link
-                href="/"
+                href="/scan"
                 className="mt-6 inline-flex w-fit rounded-full bg-slate-900 px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white"
               >
                 Start the scan
               </Link>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-surface">
+        <div className="container grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted">
+              ROI calculator
+            </p>
+            <h2 className="text-3xl font-semibold text-ink">
+              Estimate the opportunity before you commit.
+            </h2>
+            <p className="text-muted">
+              Input your workflow volume to preview the value range of a 30-day sprint.
+            </p>
+          </div>
+          <ROICalculator />
         </div>
       </section>
 
@@ -98,7 +116,7 @@ export default function PricingPage() {
               we will tell you.
             </p>
             <Link
-              href="/"
+              href="/scan"
               className="inline-flex rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold"
             >
               Book the Opportunity Scan
@@ -120,6 +138,32 @@ export default function PricingPage() {
           </div>
           <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
             <FAQ items={pricingFaq} />
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+          <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div className="space-y-3">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted">
+                {siteContent.site.partners.title}
+              </p>
+              <ul className="space-y-2 text-sm text-muted">
+                {siteContent.site.partners.bullets.map((bullet) => (
+                  <li key={bullet} className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-slate-900" />
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <Link
+              href={siteContent.site.partners.ctaHref}
+              className="inline-flex w-fit rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold"
+            >
+              {siteContent.site.partners.ctaLabel}
+            </Link>
           </div>
         </div>
       </section>

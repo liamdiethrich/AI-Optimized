@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { howItWorks } from "@/content/site";
+import { howItWorks, siteContent } from "@/content/site";
 
 export const metadata: Metadata = {
   title: howItWorks.hero.title,
@@ -29,7 +29,7 @@ export default function HowItWorksPage() {
                 View pricing
               </Link>
               <Link
-                href="/"
+                href="/scan"
                 className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold"
               >
                 Start with the scan
@@ -145,13 +145,57 @@ export default function HowItWorksPage() {
       </section>
 
       <section className="bg-surface">
+        <div className="container grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted">
+              {siteContent.site.security.title}
+            </p>
+            <h2 className="text-3xl font-semibold text-ink">Security & data handling</h2>
+            <p className="text-muted">{siteContent.site.security.microcopy}</p>
+          </div>
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <ul className="space-y-3 text-sm text-muted">
+              {siteContent.site.security.bullets.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-1 h-2 w-2 rounded-full bg-slate-900" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container grid gap-8 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-muted">
+              Testing before deployment
+            </p>
+            <h2 className="text-2xl font-semibold text-ink">
+              Simulation runs + acceptance criteria before launch.
+            </h2>
+            <p className="text-muted">
+              We validate on test batches, agree on quality thresholds, and only move to
+              production once operators sign off.
+            </p>
+          </div>
+          <div className="space-y-3 text-sm text-muted">
+            <p>• Dry-run simulations against historical tickets or workflows.</p>
+            <p>• Human review of edge cases and escalation paths.</p>
+            <p>• Success criteria documented before rollout.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-surface">
         <div className="container flex flex-col items-start justify-between gap-6 rounded-3xl border border-slate-200 bg-white p-10 shadow-sm md:flex-row md:items-center">
           <div className="space-y-2">
             <h2 className="text-2xl font-semibold text-ink">{howItWorks.cta.title}</h2>
             <p className="text-muted">{howItWorks.cta.description}</p>
           </div>
           <Link
-            href="/"
+            href="/scan"
             className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white"
           >
             {howItWorks.cta.action}

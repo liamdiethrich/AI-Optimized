@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   const { examples } = siteContent.pages;
+  const outcomes = siteContent.site.outcomes;
 
   return (
     <Container className="space-y-16">
@@ -60,6 +61,33 @@ export default function Page() {
         </div>
       </section>
 
+      <section className="space-y-6 rounded-3xl border border-border bg-surface-muted p-8">
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold text-text">{outcomes.title}</h2>
+          <p className="max-w-3xl text-text-muted">
+            Example metrics to illustrate the Outcome Layer dashboards we deliver.
+          </p>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {outcomes.metrics.map((metric) => (
+            <div
+              key={metric.label}
+              className="rounded-2xl border border-border bg-background p-4"
+            >
+              <p className="text-xs uppercase tracking-[0.2em] text-text-muted">
+                {metric.label}
+              </p>
+              <p className="mt-2 text-lg font-semibold text-text">{metric.value}</p>
+            </div>
+          ))}
+        </div>
+        <ul className="grid gap-2 text-sm text-text-muted md:grid-cols-2">
+          {outcomes.explanationBullets.map((bullet) => (
+            <li key={bullet}>• {bullet}</li>
+          ))}
+        </ul>
+      </section>
+
       <section className="space-y-6">
         <div className="space-y-2">
           <h2 className="text-2xl font-semibold text-text">{examples.workflowLibraryTitle}</h2>
@@ -85,6 +113,25 @@ export default function Page() {
         </div>
         <div className="grid gap-4 md:grid-cols-2">
           {examples.deliverableOutline.map((item) => (
+            <div key={item.title} className="rounded-2xl border border-border bg-background p-4">
+              <h3 className="text-base font-semibold text-text">{item.title}</h3>
+              <p className="mt-1 text-sm text-text-muted">{item.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="space-y-6 rounded-3xl border border-border bg-surface p-8">
+        <div className="space-y-2">
+          <h2 className="text-2xl font-semibold text-text">
+            What your Opportunity Map includes
+          </h2>
+          <p className="max-w-3xl text-text-muted">
+            A 2–4 page outline you can circulate internally before the sprint begins.
+          </p>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          {examples.sampleOpportunityMapOutline.map((item) => (
             <div key={item.title} className="rounded-2xl border border-border bg-background p-4">
               <h3 className="text-base font-semibold text-text">{item.title}</h3>
               <p className="mt-1 text-sm text-text-muted">{item.description}</p>

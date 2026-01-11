@@ -74,7 +74,7 @@ export function ROICalculator({ className, values, onValuesChange }: ROICalculat
     }).format(Math.round(value));
 
   return (
-    <div className={cn("aio-card aio-card-hover p-6", className)}>
+    <div className={cn("aio-card p-6", className)}>
       <div className="space-y-2">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[rgba(var(--aio-text),.65)]">
           ROI calculator

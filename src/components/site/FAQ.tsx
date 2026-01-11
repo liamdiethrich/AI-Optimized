@@ -16,7 +16,7 @@ type FAQProps = {
 
 export default function FAQ({ items }: FAQProps) {
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion type="single" collapsible className="aio-accordion w-full">
       {items.map((item) => (
         <AccordionItem key={item.question} value={item.question}>
           <AccordionTrigger>{item.question}</AccordionTrigger>

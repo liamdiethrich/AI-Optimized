@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { ROICalculator, calculateRoiRange, type RoiValues } from "@/components/site/ROICalculator";
 import { siteContent } from "@/content/site";
@@ -91,6 +92,7 @@ export function OpportunityScanWizard() {
   const [status, setStatus] = useState<SubmissionState>("idle");
   const steps = scanCopy.steps;
   const formspreeId = env.NEXT_PUBLIC_FORMSPREE_FORM_ID;
+  const router = useRouter();
 
   const roiValues = useMemo<RoiValues>(
     () => ({
@@ -181,6 +183,7 @@ export function OpportunityScanWizard() {
       }
 
       setStatus("success");
+      router.push("/scan/thanks");
     } catch (_error) {
       setStatus("error");
     }

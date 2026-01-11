@@ -14,7 +14,7 @@ const AccordionItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
     ref={ref}
-    className={cn("border-b border-slate-200", className)}
+    className={cn("border-t border-[rgba(var(--aio-brand),.12)] first:border-t-0", className)}
     {...props}
   />
 ));
@@ -28,13 +28,13 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        "group flex flex-1 items-center justify-between py-4 text-left text-base font-medium transition",
+        "group flex flex-1 items-center justify-between gap-4 px-5 py-4 text-left text-base font-semibold text-[rgba(var(--aio-ink),.92)] transition",
         className
       )}
       {...props}
     >
-      <span className="text-ink">{children}</span>
-      <ChevronDown className="h-4 w-4 text-muted transition-transform duration-200 group-data-[state=open]:rotate-180" />
+      <span>{children}</span>
+      <ChevronDown className="h-4 w-4 text-[rgba(var(--aio-ink),.6)] transition-transform duration-200 group-data-[state=open]:rotate-180" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));
@@ -47,12 +47,12 @@ const AccordionContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      "overflow-hidden text-sm text-muted data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+      "overflow-hidden text-sm text-[rgba(var(--aio-ink),.76)] data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
       className
     )}
     {...props}
   >
-    <div className="pb-4 pt-1">{children}</div>
+    <div className="aio-accordion-body">{children}</div>
   </AccordionPrimitive.Content>
 ));
 AccordionContent.displayName = "AccordionContent";

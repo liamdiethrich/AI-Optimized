@@ -11,12 +11,12 @@ export function ContactForm() {
 
   return (
     <form
-      className="space-y-5 rounded-3xl border border-border bg-surface p-6"
+      className="aio-card aio-card-hover space-y-5 p-6"
       onSubmit={(event) => event.preventDefault()}
     >
       <input type="hidden" name="mode" value={mode} />
       <div className="space-y-1">
-        <label className="text-sm font-semibold text-text" htmlFor="contact-name">
+        <label className="text-sm font-semibold" htmlFor="contact-name">
           {contact.fields.name}
         </label>
         <input
@@ -25,11 +25,11 @@ export function ContactForm() {
           type="text"
           autoComplete="name"
           placeholder="Jordan Lee"
-          className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+          className="aio-input text-sm"
         />
       </div>
       <div className="space-y-1">
-        <label className="text-sm font-semibold text-text" htmlFor="contact-email">
+        <label className="text-sm font-semibold" htmlFor="contact-email">
           {contact.fields.email}
         </label>
         <input
@@ -38,12 +38,12 @@ export function ContactForm() {
           type="email"
           autoComplete="email"
           placeholder="jordan@company.com"
-          className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+          className="aio-input text-sm"
         />
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         <div className="space-y-1">
-          <label className="text-sm font-semibold text-text" htmlFor="contact-company">
+          <label className="text-sm font-semibold" htmlFor="contact-company">
             {contact.fields.company}
           </label>
           <input
@@ -52,11 +52,11 @@ export function ContactForm() {
             type="text"
             autoComplete="organization"
             placeholder="Nimbus Labs"
-            className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+            className="aio-input text-sm"
           />
         </div>
         <div className="space-y-1">
-          <label className="text-sm font-semibold text-text" htmlFor="contact-role">
+          <label className="text-sm font-semibold" htmlFor="contact-role">
             {contact.fields.role}
           </label>
           <input
@@ -65,12 +65,12 @@ export function ContactForm() {
             type="text"
             autoComplete="organization-title"
             placeholder="RevOps, CX, or Ops lead"
-            className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+            className="aio-input text-sm"
           />
         </div>
       </div>
       <div className="space-y-1">
-        <label className="text-sm font-semibold text-text" htmlFor="contact-goals">
+        <label className="text-sm font-semibold" htmlFor="contact-goals">
           {contact.fields.goals}
         </label>
         <textarea
@@ -78,16 +78,16 @@ export function ContactForm() {
           name="goals"
           rows={4}
           placeholder="Example: automate weekly reporting and reduce handoffs between sales + success."
-          className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+          className="aio-input text-sm"
         />
       </div>
       <button
         type="button"
-        className="w-full rounded-xl bg-brand-primary px-4 py-2 text-sm font-semibold text-white"
+        className="aio-btn aio-btn--primary w-full"
       >
         {contact.primaryCta}
       </button>
-      <p className="text-xs text-text-muted">{contact.helperText}</p>
+      <p className="text-xs text-[rgba(var(--aio-ink),.62)]">{contact.helperText}</p>
     </form>
   );
 }

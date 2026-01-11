@@ -188,19 +188,19 @@ export function OpportunityScanWizard() {
 
   if (status === "success") {
     return (
-      <div className="space-y-6 rounded-3xl border border-border bg-surface p-8">
+      <div className="aio-card aio-form-card space-y-6">
         <div className="space-y-2">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-text-muted">
-            Scan submitted
-          </p>
-          <h2 className="text-2xl font-semibold text-text">We will respond within 2 business days.</h2>
-          <p className="text-sm text-text-muted">
+          <p className="aio-badge w-fit">Scan submitted</p>
+          <h2 className="text-2xl font-semibold text-[rgb(var(--aio-text))]">
+            We will respond within 2 business days.
+          </h2>
+          <p className="text-sm text-[rgba(var(--aio-text),.7)]">
             Expect an email with your opportunity map draft and suggested next steps.
           </p>
         </div>
         <a
           href={bookingCta.bookingCtaHref}
-          className="inline-flex w-fit rounded-full bg-brand-primary px-6 py-3 text-sm font-semibold text-white"
+          className="aio-btn aio-btn--primary w-fit"
         >
           {bookingCta.bookingCtaLabel}
         </a>
@@ -210,43 +210,49 @@ export function OpportunityScanWizard() {
 
   return (
     <div className="space-y-8">
-      <div className="grid gap-4 md:grid-cols-5">
+      <div className="aio-stepper">
         {steps.map((step, index) => (
           <div
             key={step.title}
-            className={`rounded-2xl border px-4 py-3 text-xs font-semibold uppercase tracking-[0.2em] ${
-              index === stepIndex
-                ? "border-brand-primary bg-brand-primary/10 text-brand-primary"
-                : "border-border text-text-muted"
-            }`}
+            className={[
+              "aio-step",
+              index === stepIndex ? "aio-step--active" : "",
+              index < stepIndex ? "aio-step--done" : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
           >
             Step {index + 1}: {step.title}
           </div>
         ))}
       </div>
 
-      <div className="rounded-3xl border border-border bg-surface p-8">
+      <div className="aio-card aio-form-card">
         <div className="space-y-2">
-          <h2 className="text-2xl font-semibold text-text">{steps[stepIndex]?.title}</h2>
-          <p className="text-sm text-text-muted">{steps[stepIndex]?.description}</p>
+          <h2 className="text-2xl font-semibold text-[rgb(var(--aio-text))]">
+            {steps[stepIndex]?.title}
+          </h2>
+          <p className="text-sm text-[rgba(var(--aio-text),.7)]">
+            {steps[stepIndex]?.description}
+          </p>
         </div>
 
         <div className="mt-6 space-y-6">
           {stepIndex === 0 && (
             <div className="grid gap-4 md:grid-cols-2">
-              <label className="space-y-2 text-sm text-text">
+              <label className="space-y-2 text-sm text-[rgba(var(--aio-text),.9)]">
                 <span className="font-semibold">Full name</span>
                 <input
-                  className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+                  className="aio-input"
                   name="name"
                   value={formData.name}
                   onChange={(event) => updateField("name", event.target.value)}
                 />
               </label>
-              <label className="space-y-2 text-sm text-text">
+              <label className="space-y-2 text-sm text-[rgba(var(--aio-text),.9)]">
                 <span className="font-semibold">Work email *</span>
                 <input
-                  className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+                  className="aio-input"
                   name="email"
                   type="email"
                   value={formData.email}
@@ -256,28 +262,28 @@ export function OpportunityScanWizard() {
                   <p className="text-xs text-red-500">{fieldErrors.email}</p>
                 )}
               </label>
-              <label className="space-y-2 text-sm text-text">
+              <label className="space-y-2 text-sm text-[rgba(var(--aio-text),.9)]">
                 <span className="font-semibold">Company</span>
                 <input
-                  className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+                  className="aio-input"
                   name="company"
                   value={formData.company}
                   onChange={(event) => updateField("company", event.target.value)}
                 />
               </label>
-              <label className="space-y-2 text-sm text-text">
+              <label className="space-y-2 text-sm text-[rgba(var(--aio-text),.9)]">
                 <span className="font-semibold">Role / team</span>
                 <input
-                  className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+                  className="aio-input"
                   name="role"
                   value={formData.role}
                   onChange={(event) => updateField("role", event.target.value)}
                 />
               </label>
-              <label className="space-y-2 text-sm text-text md:col-span-2">
+              <label className="space-y-2 text-sm text-[rgba(var(--aio-text),.9)] md:col-span-2">
                 <span className="font-semibold">Team size</span>
                 <select
-                  className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+                  className="aio-input"
                   value={formData.teamSize}
                   onChange={(event) => updateField("teamSize", event.target.value)}
                 >
@@ -294,10 +300,10 @@ export function OpportunityScanWizard() {
 
           {stepIndex === 1 && (
             <div className="space-y-6">
-              <label className="space-y-2 text-sm text-text">
+              <label className="space-y-2 text-sm text-[rgba(var(--aio-text),.9)]">
                 <span className="font-semibold">Department</span>
                 <select
-                  className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+                  className="aio-input"
                   value={formData.department}
                   onChange={(event) => updateField("department", event.target.value)}
                 >
@@ -309,10 +315,10 @@ export function OpportunityScanWizard() {
                   ))}
                 </select>
               </label>
-              <label className="space-y-2 text-sm text-text">
+              <label className="space-y-2 text-sm text-[rgba(var(--aio-text),.9)]">
                 <span className="font-semibold">Workflow description *</span>
                 <textarea
-                  className="min-h-[140px] w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+                  className="aio-input min-h-[140px]"
                   value={formData.workflowDescription}
                   onChange={(event) => updateField("workflowDescription", event.target.value)}
                 />
@@ -321,33 +327,37 @@ export function OpportunityScanWizard() {
                 )}
               </label>
               <div className="grid gap-4 md:grid-cols-2">
-                <label className="space-y-2 text-sm text-text">
+                <label className="space-y-2 text-sm text-[rgba(var(--aio-text),.9)]">
                   <span className="font-semibold">Runs per week</span>
                   <input
                     type="number"
                     min={0}
-                    className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+                    className="aio-input"
                     value={formData.runsPerWeek ?? 0}
                     onChange={(event) => updateField("runsPerWeek", Number(event.target.value))}
                   />
                 </label>
-                <label className="space-y-2 text-sm text-text">
+                <label className="space-y-2 text-sm text-[rgba(var(--aio-text),.9)]">
                   <span className="font-semibold">Minutes per run</span>
                   <input
                     type="number"
                     min={0}
-                    className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+                    className="aio-input"
                     value={formData.minutesPerRun ?? 0}
                     onChange={(event) => updateField("minutesPerRun", Number(event.target.value))}
                   />
                 </label>
               </div>
               <div className="space-y-2">
-                <p className="text-sm font-semibold text-text">Pain points</p>
+                <p className="text-sm font-semibold text-[rgba(var(--aio-text),.9)]">Pain points</p>
                 <div className="grid gap-3 md:grid-cols-2">
                   {PAIN_TYPES.map((pain) => (
-                    <label key={pain} className="flex items-center gap-2 text-sm text-text-muted">
+                    <label
+                      key={pain}
+                      className="flex items-center gap-2 text-sm text-[rgba(var(--aio-text),.72)]"
+                    >
                       <input
+                        className="aio-input h-4 w-4 p-0"
                         type="checkbox"
                         checked={formData.painTypes?.includes(pain) ?? false}
                         onChange={() => toggleMultiValue("painTypes", pain)}
@@ -364,8 +374,12 @@ export function OpportunityScanWizard() {
             <div className="space-y-6">
               <div className="grid gap-3 md:grid-cols-2">
                 {TOOL_OPTIONS.map((tool) => (
-                  <label key={tool} className="flex items-center gap-2 text-sm text-text-muted">
+                  <label
+                    key={tool}
+                    className="flex items-center gap-2 text-sm text-[rgba(var(--aio-text),.72)]"
+                  >
                     <input
+                      className="aio-input h-4 w-4 p-0"
                       type="checkbox"
                       checked={formData.tools?.includes(tool) ?? false}
                       onChange={() => toggleMultiValue("tools", tool)}
@@ -374,10 +388,10 @@ export function OpportunityScanWizard() {
                   </label>
                 ))}
               </div>
-              <label className="space-y-2 text-sm text-text">
+              <label className="space-y-2 text-sm text-[rgba(var(--aio-text),.9)]">
                 <span className="font-semibold">Other tools</span>
                 <input
-                  className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+                  className="aio-input"
                   value={formData.otherTools}
                   onChange={(event) => updateField("otherTools", event.target.value)}
                 />
@@ -388,11 +402,17 @@ export function OpportunityScanWizard() {
           {stepIndex === 3 && (
             <div className="space-y-6">
               <div className="space-y-2">
-                <p className="text-sm font-semibold text-text">Data sensitivity</p>
+                <p className="text-sm font-semibold text-[rgba(var(--aio-text),.9)]">
+                  Data sensitivity
+                </p>
                 <div className="grid gap-3 md:grid-cols-2">
                   {SENSITIVITY_OPTIONS.map((option) => (
-                    <label key={option} className="flex items-center gap-2 text-sm text-text-muted">
+                    <label
+                      key={option}
+                      className="flex items-center gap-2 text-sm text-[rgba(var(--aio-text),.72)]"
+                    >
                       <input
+                        className="aio-input h-4 w-4 p-0"
                         type="checkbox"
                         checked={formData.sensitivity?.includes(option) ?? false}
                         onChange={() => toggleMultiValue("sensitivity", option)}
@@ -402,10 +422,10 @@ export function OpportunityScanWizard() {
                   ))}
                 </div>
               </div>
-              <label className="space-y-2 text-sm text-text">
+              <label className="space-y-2 text-sm text-[rgba(var(--aio-text),.9)]">
                 <span className="font-semibold">Access preference</span>
                 <select
-                  className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+                  className="aio-input"
                   value={formData.accessPreference}
                   onChange={(event) => updateField("accessPreference", event.target.value)}
                 >
@@ -417,10 +437,10 @@ export function OpportunityScanWizard() {
                   ))}
                 </select>
               </label>
-              <label className="space-y-2 text-sm text-text">
+              <label className="space-y-2 text-sm text-[rgba(var(--aio-text),.9)]">
                 <span className="font-semibold">Approval gates required?</span>
                 <select
-                  className="w-full rounded-xl border border-border bg-background px-4 py-2 text-sm text-text outline-none focus:border-brand-accent"
+                  className="aio-input"
                   value={formData.approvalGates}
                   onChange={(event) => updateField("approvalGates", event.target.value)}
                 >
@@ -444,48 +464,88 @@ export function OpportunityScanWizard() {
                   updateField("errorMinutesPerRun", values.errorMinutesPerRun);
                 }}
               />
-              <div className="space-y-3 rounded-2xl border border-border bg-background p-4 text-sm text-text-muted">
-                <p className="text-sm font-semibold text-text">Review summary</p>
+              <div className="space-y-3 rounded-2xl border border-border bg-background p-4 text-sm text-[rgba(var(--aio-text),.72)]">
+                <p className="text-sm font-semibold text-[rgba(var(--aio-text),.9)]">
+                  Review summary
+                </p>
                 <div className="grid gap-2 md:grid-cols-2">
                   <p>
-                    <span className="font-semibold text-text">Contact:</span> {formData.name || ""} {" "}
+                    <span className="font-semibold text-[rgba(var(--aio-text),.9)]">
+                      Contact:
+                    </span>{" "}
+                    {formData.name || ""}{" "}
                     ({formData.email || ""})
                   </p>
                   <p>
-                    <span className="font-semibold text-text">Company:</span> {formData.company || ""}
+                    <span className="font-semibold text-[rgba(var(--aio-text),.9)]">
+                      Company:
+                    </span>{" "}
+                    {formData.company || ""}
                   </p>
                   <p>
-                    <span className="font-semibold text-text">Role:</span> {formData.role || ""}
+                    <span className="font-semibold text-[rgba(var(--aio-text),.9)]">
+                      Role:
+                    </span>{" "}
+                    {formData.role || ""}
                   </p>
                   <p>
-                    <span className="font-semibold text-text">Team size:</span> {formData.teamSize || ""}
+                    <span className="font-semibold text-[rgba(var(--aio-text),.9)]">
+                      Team size:
+                    </span>{" "}
+                    {formData.teamSize || ""}
                   </p>
                   <p>
-                    <span className="font-semibold text-text">Department:</span> {formData.department || ""}
+                    <span className="font-semibold text-[rgba(var(--aio-text),.9)]">
+                      Department:
+                    </span>{" "}
+                    {formData.department || ""}
                   </p>
                   <p>
-                    <span className="font-semibold text-text">Pain points:</span> {formData.painTypes?.join(", ") || ""}
+                    <span className="font-semibold text-[rgba(var(--aio-text),.9)]">
+                      Pain points:
+                    </span>{" "}
+                    {formData.painTypes?.join(", ") || ""}
                   </p>
                   <p>
-                    <span className="font-semibold text-text">Tools:</span> {formData.tools?.join(", ") || ""}
+                    <span className="font-semibold text-[rgba(var(--aio-text),.9)]">
+                      Tools:
+                    </span>{" "}
+                    {formData.tools?.join(", ") || ""}
                   </p>
                   <p>
-                    <span className="font-semibold text-text">Other tools:</span> {formData.otherTools || ""}
+                    <span className="font-semibold text-[rgba(var(--aio-text),.9)]">
+                      Other tools:
+                    </span>{" "}
+                    {formData.otherTools || ""}
                   </p>
                   <p className="md:col-span-2">
-                    <span className="font-semibold text-text">Workflow:</span> {formData.workflowDescription || ""}
+                    <span className="font-semibold text-[rgba(var(--aio-text),.9)]">
+                      Workflow:
+                    </span>{" "}
+                    {formData.workflowDescription || ""}
                   </p>
                   <p>
-                    <span className="font-semibold text-text">Sensitivity:</span> {formData.sensitivity?.join(", ") || ""}
+                    <span className="font-semibold text-[rgba(var(--aio-text),.9)]">
+                      Sensitivity:
+                    </span>{" "}
+                    {formData.sensitivity?.join(", ") || ""}
                   </p>
                   <p>
-                    <span className="font-semibold text-text">Access:</span> {formData.accessPreference || ""}
+                    <span className="font-semibold text-[rgba(var(--aio-text),.9)]">
+                      Access:
+                    </span>{" "}
+                    {formData.accessPreference || ""}
                   </p>
                   <p>
-                    <span className="font-semibold text-text">Approval gates:</span> {formData.approvalGates || ""}
+                    <span className="font-semibold text-[rgba(var(--aio-text),.9)]">
+                      Approval gates:
+                    </span>{" "}
+                    {formData.approvalGates || ""}
                   </p>
                 </div>
-                <p className="text-xs text-text-muted">{scanCopy.privacyMicrocopy}</p>
+                <p className="text-xs text-[rgba(var(--aio-text),.6)]">
+                  {scanCopy.privacyMicrocopy}
+                </p>
               </div>
             </div>
           )}
@@ -494,7 +554,7 @@ export function OpportunityScanWizard() {
         <div className="mt-8 flex flex-wrap items-center justify-between gap-3">
           <button
             type="button"
-            className="rounded-full border border-border px-6 py-2 text-sm font-semibold text-text"
+            className="aio-btn aio-btn--secondary"
             onClick={handleBack}
             disabled={stepIndex === 0}
           >
@@ -504,7 +564,7 @@ export function OpportunityScanWizard() {
           {stepIndex < steps.length - 1 ? (
             <button
               type="button"
-              className="rounded-full bg-brand-primary px-6 py-2 text-sm font-semibold text-white"
+              className="aio-btn aio-btn--primary"
               onClick={handleNext}
             >
               Continue
@@ -512,7 +572,7 @@ export function OpportunityScanWizard() {
           ) : (
             <button
               type="button"
-              className="rounded-full bg-brand-primary px-6 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+              className="aio-btn aio-btn--primary disabled:cursor-not-allowed disabled:opacity-60"
               onClick={handleSubmit}
               disabled={status === "submitting" || !formspreeId}
             >
@@ -528,7 +588,7 @@ export function OpportunityScanWizard() {
         )}
 
         {!formspreeId && (
-          <p className="mt-4 text-xs text-text-muted">
+          <p className="mt-4 text-xs text-[rgba(var(--aio-text),.6)]">
             Add NEXT_PUBLIC_FORMSPREE_FORM_ID to enable submissions in this environment.
           </p>
         )}

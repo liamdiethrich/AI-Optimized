@@ -1,18 +1,50 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
 import { siteContent } from "@/content/site";
+
+const emailRecipient = "hello@ai-optimized.example";
+
+function buildMailto(formData: FormData) {
+  const subject = `Opportunity scan request — ${formData.get("name") || "New lead"}`;
+  const lines = [
+    `Name: ${formData.get("name") || ""}`,
+    `Email: ${formData.get("email") || ""}`,
+    `Company: ${formData.get("company") || ""}`,
+    `Role / team: ${formData.get("role") || ""}`,
+    `Goals: ${formData.get("goals") || ""}`,
+    `Mode: ${formData.get("mode") || ""}`,
+  ];
+
+  return `mailto:${emailRecipient}?subject=${encodeURIComponent(
+    subject,
+  )}&body=${encodeURIComponent(lines.join("\n"))}`;
+}
 
 export function ContactForm() {
   const { contact } = siteContent.pages;
   const searchParams = useSearchParams();
   const mode = searchParams.get("mode") ?? "";
+  const router = useRouter();
+  const [submitMessage, setSubmitMessage] = useState("");
 
   return (
     <form
-      className="aio-card aio-card-hover space-y-5 p-6"
-      onSubmit={(event) => event.preventDefault()}
+      className="space-y-5 rounded-3xl border border-border bg-surface p-6"
+      onSubmit={(event) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        const mailto = buildMailto(formData);
+        window.location.href = mailto;
+        setSubmitMessage(
+          "Request received. If your mail app didn’t open, copy the details and email us.",
+        );
+        window.setTimeout(() => {
+          router.push("/contact/thanks");
+        }, 300);
+      }}
     >
       <input type="hidden" name="mode" value={mode} />
       <div className="space-y-1">
@@ -82,12 +114,15 @@ export function ContactForm() {
         />
       </div>
       <button
-        type="button"
-        className="aio-btn aio-btn--primary w-full"
+        type="submit"
+        className="w-full rounded-xl bg-brand-primary px-4 py-2 text-sm font-semibold text-white"
       >
         {contact.primaryCta}
       </button>
-      <p className="text-xs text-[rgba(var(--aio-ink),.62)]">{contact.helperText}</p>
+      <p className="text-xs text-text-muted">{contact.helperText}</p>
+      {submitMessage ? (
+        <p className="text-xs font-semibold text-text">{submitMessage}</p>
+      ) : null}
     </form>
   );
 }

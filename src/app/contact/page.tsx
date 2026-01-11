@@ -48,26 +48,19 @@ export default function ContactPage() {
             </p>
             <ContactForm />
           </div>
-          <aside className="aio-card aio-card-hover space-y-6 p-6">
-            <div className="space-y-2">
-              <h3 className="text-xl font-semibold">Need a faster reply?</h3>
-              <p className="text-sm text-[rgba(var(--aio-ink),.7)]">
-                {contact.fallbackEmailLabel}{" "}
-                <a className="aio-link font-semibold" href={`mailto:${contact.fallbackEmail}`}>
-                  {contact.fallbackEmail}
-                </a>
-                .
-              </p>
-            </div>
-            <div className="aio-card aio-card--light space-y-3 p-4">
-              <p className="text-sm font-semibold">{contact.bookingCtaHeading}</p>
-              <p className="text-sm text-[rgba(var(--aio-ink),.7)]">{contact.bookingCtaNote}</p>
-              <a className="aio-btn aio-btn--secondary w-full" href={contact.bookingCtaHref}>
-                {contact.bookingCtaLabel}
-              </a>
-            </div>
-          </aside>
-        </div>
+          <div className="space-y-3 rounded-2xl border border-border bg-background p-4">
+            <p className="text-sm font-semibold text-text">{contact.bookingCtaHeading}</p>
+            <p className="text-sm text-text-muted">{contact.bookingCtaNote}</p>
+            <a
+              className="inline-flex w-full items-center justify-center rounded-xl border border-brand-accent/60 px-4 py-2 text-sm font-semibold text-brand-accent"
+              href={contact.bookingCtaHref}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {contact.bookingCtaLabel}
+            </a>
+          </div>
+        </aside>
       </section>
 
       <section className="aio-section aio-section--light">

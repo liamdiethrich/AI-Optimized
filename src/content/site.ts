@@ -604,7 +604,7 @@ export const siteContent: SiteContent = {
         "Priority scheduling for partner pipelines.",
       ],
       ctaLabel: "Partner with AI Optimized",
-      ctaHref: "/contact?mode=partner",
+      ctaHref: "/partners",
     },
   },
   nav: {
@@ -801,7 +801,7 @@ export const siteContent: SiteContent = {
       },
       primaryCta: "Request the scan",
       helperText:
-        "We will never share your details. This form does not submit yet—email us directly if you need a faster response.",
+        "We will never share your details. Submitting opens an email draft if you need a faster response.",
       fallbackEmailLabel: "Email us at",
       fallbackEmail: "hello@ai-optimized.example",
       bookingCtaLabel: "View booking placeholder",

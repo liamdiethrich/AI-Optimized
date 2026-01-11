@@ -63,6 +63,8 @@ export default function ContactPage() {
             <a
               className="inline-flex w-full items-center justify-center rounded-xl border border-brand-accent/60 px-4 py-2 text-sm font-semibold text-brand-accent"
               href={contact.bookingCtaHref}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               {contact.bookingCtaLabel}
             </a>

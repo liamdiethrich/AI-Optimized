@@ -119,6 +119,40 @@ body{
     mask-image: radial-gradient(circle at 60% 10%, black 0 55%, transparent 75%);
   }
 
+  .aio-peak-overlay{
+    position:absolute;
+    left:-10%;
+    right:-10%;
+    bottom:-1px;
+    height: 320px;
+    pointer-events:none;
+    opacity: .22;
+    background:
+      radial-gradient(closest-side at 50% 90%, rgba(var(--aio-brand-2), .22), transparent 65%),
+      linear-gradient(180deg, transparent 0%, rgba(0,0,0,.35) 85%);
+    mix-blend-mode: screen;
+  }
+  @supports (clip-path: polygon(0 0)){
+    .aio-peak-overlay{
+      opacity: .18;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.08), transparent 60%),
+        linear-gradient(180deg, rgba(var(--aio-brand), .14), transparent 60%);
+      clip-path: polygon(
+        0% 100%,
+        12% 72%,
+        22% 78%,
+        34% 60%,
+        50% 72%,
+        62% 52%,
+        78% 74%,
+        90% 66%,
+        100% 100%
+      );
+      mix-blend-mode: normal;
+    }
+  }
+
   .aio-badge{
     display: inline-flex;
     align-items: center;
@@ -223,6 +257,17 @@ body{
   .aio-btn--secondary:hover{
     background: rgba(255,255,255,.08);
     border-color: rgba(255,255,255,.18);
+  }
+
+  .aio-link{
+    color: rgba(var(--aio-brand-2), .96);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgba(var(--aio-brand-2), .4);
+    text-underline-offset: 4px;
+  }
+  .aio-link:hover{
+    text-decoration-color: rgba(var(--aio-brand-2), .8);
   }
 
   .aio-input{

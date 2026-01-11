@@ -1,15 +1,20 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
+
 import { siteContent } from "@/content/site";
 
 export function ContactForm() {
   const { contact } = siteContent.pages;
+  const searchParams = useSearchParams();
+  const mode = searchParams.get("mode") ?? "";
 
   return (
     <form
       className="space-y-5 rounded-3xl border border-border bg-surface p-6"
       onSubmit={(event) => event.preventDefault()}
     >
+      <input type="hidden" name="mode" value={mode} />
       <div className="space-y-1">
         <label className="text-sm font-semibold text-text" htmlFor="contact-name">
           {contact.fields.name}

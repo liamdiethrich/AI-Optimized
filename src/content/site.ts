@@ -16,6 +16,16 @@ type DeliverableOutlineItem = {
   description: string;
 };
 
+type OutcomeMetric = {
+  label: string;
+  value: string;
+};
+
+type OpportunityMapOutlineItem = {
+  title: string;
+  description: string;
+};
+
 export const howItWorks = {
   hero: {
     title: "Your AI automation delivered in 30 days",
@@ -107,7 +117,8 @@ export const pricing = {
         "One automation delivered in 30 days",
         "Workflow documentation + SOPs",
         "Team training session",
-        "ROI scorecard"
+        "ROI scorecard",
+        "Outcome Layer included (cycle time, hours saved, error proxies, SLA compliance)"
       ]
     },
     {
@@ -222,7 +233,7 @@ export const homeCopy = {
       "We map your highest-friction processes, design the right AI-assisted workflow, and deliver a production-ready automation with a clear ROI story.",
     primaryCta: {
       label: "Book a free scan",
-      href: "#free-scan",
+      href: "/scan",
     },
     secondaryCta: {
       label: "See how it works",
@@ -335,6 +346,10 @@ export const homeCopy = {
         description:
           "Training, playbooks, and monitoring ensure your team owns the workflow.",
       },
+      {
+        title: "Outcome layer from day one",
+        description: "You get measurement from day one: baseline → change → dashboard.",
+      },
     ],
   },
   caseTemplates: {
@@ -406,7 +421,7 @@ export const homeCopy = {
       "Get a tailored roadmap and see if a 30-day sprint is the right next step.",
     cta: {
       label: "Schedule the scan",
-      href: "#free-scan",
+      href: "/scan",
     },
   },
 } as const;
@@ -416,6 +431,40 @@ export type SiteContent = {
     tagline: string;
     description: string;
     url: string;
+    scan: {
+      heroTitle: string;
+      heroSubhead: string;
+      steps: Array<{ title: string; description: string }>;
+      submitCta: string;
+      privacyMicrocopy: string;
+    };
+    roi: {
+      title: string;
+      helpText: string;
+      assumptions: string[];
+      fieldsLabels: {
+        runsPerWeek: string;
+        minutesPerRun: string;
+        hourlyCost: string;
+        errorMinutesPerRun: string;
+      };
+    };
+    security: {
+      title: string;
+      bullets: string[];
+      microcopy: string;
+    };
+    outcomes: {
+      title: string;
+      metrics: OutcomeMetric[];
+      explanationBullets: string[];
+    };
+    partners: {
+      title: string;
+      bullets: string[];
+      ctaLabel: string;
+      ctaHref: string;
+    };
   };
   nav: {
     links: Array<{ label: string; href: string }>;
@@ -442,6 +491,7 @@ export type SiteContent = {
       deliverableTitle: string;
       deliverableSubtitle: string;
       deliverableOutline: DeliverableOutlineItem[];
+      sampleOpportunityMapOutline: OpportunityMapOutlineItem[];
     };
     contact: {
       eyebrow: string;
@@ -474,7 +524,88 @@ export const siteContent: SiteContent = {
     tagline: "AI workflow optimization for busy teams.",
     description:
       "Free AI Opportunity Scan followed by a 30-day sprint delivering one measurable automation.",
-    url: "https://ai-optimized.example"
+    url: "https://ai-optimized.example",
+    scan: {
+      heroTitle: "Get your AI Opportunity Scan",
+      heroSubhead:
+        "Answer a few questions and we will return a focused opportunity map with ROI ranges in 2 business days.",
+      steps: [
+        {
+          title: "About you",
+          description: "Share the basics so we can route the scan correctly.",
+        },
+        {
+          title: "Workflow detail",
+          description: "Tell us what runs today and where the friction lives.",
+        },
+        {
+          title: "Tool stack",
+          description: "Highlight the systems this workflow touches.",
+        },
+        {
+          title: "Constraints",
+          description: "Flag data sensitivity and access requirements.",
+        },
+        {
+          title: "Review + ROI",
+          description: "Confirm inputs and preview the impact range.",
+        },
+      ],
+      submitCta: "Submit the scan request",
+      privacyMicrocopy: "We only use this data to prepare your scan. Redacted inputs are fine.",
+    },
+    roi: {
+      title: "Estimate your automation ROI",
+      helpText:
+        "Use your current workflow volume to estimate the monthly impact range. We assume 70–90% automation capture.",
+      assumptions: [
+        "Estimates assume 4.33 weeks per month.",
+        "Automation capture varies by workflow complexity.",
+        "Ranges reflect conservative time savings.",
+      ],
+      fieldsLabels: {
+        runsPerWeek: "Runs per week",
+        minutesPerRun: "Minutes per run",
+        hourlyCost: "Loaded hourly cost ($)",
+        errorMinutesPerRun: "Error/rework minutes per run",
+      },
+    },
+    security: {
+      title: "Security & data handling",
+      bullets: [
+        "Least-privilege access with scoped credentials.",
+        "Start with redacted samples and synthetic data where possible.",
+        "Workflow-level logging plus approval checkpoints.",
+        "Reasonable controls aligned to your internal policies.",
+      ],
+      microcopy:
+        "We align to your security requirements without making compliance certification claims.",
+    },
+    outcomes: {
+      title: "Outcome dashboard (example)",
+      metrics: [
+        { label: "Cycle time reduction", value: "↓ 28–42% (example)" },
+        { label: "Hours saved / month", value: "120–180 hrs (example)" },
+        { label: "Error proxy rate", value: "↓ 15–25% (example)" },
+        { label: "SLA compliance", value: "92–98% (example)" },
+        { label: "Automation coverage", value: "70–90% (example)" },
+      ],
+      explanationBullets: [
+        "Baseline and post-launch metrics tracked side-by-side.",
+        "Dashboards show daily/weekly deltas for leadership review.",
+        "Leading indicators include QA flags and handoff counts.",
+      ],
+    },
+    partners: {
+      title: "Agencies & partners",
+      bullets: [
+        "White-labelable delivery for your clients.",
+        "Shared documentation and handoff playbooks.",
+        "Priority scheduling for partner pipelines.",
+      ],
+      ctaLabel: "Partner with AI Optimized",
+      ctaHref: "/contact?mode=partner",
+    },
   },
   nav: {
     links: [
@@ -486,7 +617,7 @@ export const siteContent: SiteContent = {
     ],
     cta: {
       label: "Get the free scan",
-      href: "/contact"
+      href: "/scan"
     }
   },
   footer: {
@@ -541,7 +672,8 @@ export const siteContent: SiteContent = {
           deliverables: [
             "HubSpot + Salesforce sync blueprint",
             "Automated enrichment + routing rules",
-            "Deal desk summary generator"
+            "Deal desk summary generator",
+            "Measurement plan"
           ],
           results: ["42% faster lead handoffs", "2 hours saved per rep weekly"]
         },
@@ -553,7 +685,8 @@ export const siteContent: SiteContent = {
           deliverables: [
             "Renewal health scoring model",
             "Slack briefing bot",
-            "Quarterly business review template"
+            "Quarterly business review template",
+            "Measurement plan"
           ],
           results: ["18% lift in proactive outreach", "One-source renewal tracker"]
         },
@@ -565,7 +698,8 @@ export const siteContent: SiteContent = {
           deliverables: [
             "Incident classifier",
             "Executive dashboard",
-            "Playbook for corrective actions"
+            "Playbook for corrective actions",
+            "Measurement plan"
           ],
           results: ["Weekly QA reporting in under 30 minutes", "Audit-ready logs"]
         }
@@ -622,6 +756,32 @@ export const siteContent: SiteContent = {
         {
           title: "Impact scorecard",
           description: "Before/after metrics and next sprint recommendations."
+        }
+      ],
+      sampleOpportunityMapOutline: [
+        {
+          title: "Ranked workflow shortlist",
+          description: "Top 3 workflows scored by impact, effort, and readiness."
+        },
+        {
+          title: "ROI range estimates",
+          description: "Low/high value bands with assumptions and sensitivity notes."
+        },
+        {
+          title: "Automation approach",
+          description: "Recommended model strategy, tooling, and human review points."
+        },
+        {
+          title: "Data readiness & gaps",
+          description: "Sources required, missing inputs, and prep steps."
+        },
+        {
+          title: "Risks & guardrails",
+          description: "Quality checks, fallback rules, and escalation paths."
+        },
+        {
+          title: "90-day rollout map",
+          description: "Phased milestones for build, test, and adoption."
         }
       ]
     },

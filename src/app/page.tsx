@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { Badge } from "../components/site/Badge";
 import { ButtonLink } from "../components/site/ButtonLink";
+import { ROICalculator } from "../components/site/ROICalculator";
 import { Section } from "../components/site/Section";
 import { homeCopy, siteContent } from "../content/site";
 
@@ -114,6 +115,15 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6">
+          <ROICalculator />
+          <ButtonLink className="w-fit" href={siteContent.nav.cta.href}>
+            {siteContent.nav.cta.label}
+          </ButtonLink>
         </div>
       </Section>
 

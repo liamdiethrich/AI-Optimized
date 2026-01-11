@@ -28,6 +28,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified
     },
     {
+      url: `${baseUrl}/scan`,
+      lastModified
+    },
+    {
       url: `${baseUrl}/privacy`,
       lastModified
     },
